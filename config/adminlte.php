@@ -1,7 +1,7 @@
 <?php
 
-return [
 
+return [
     /*
     |--------------------------------------------------------------------------
     | Title
@@ -187,7 +187,7 @@ return [
     |
     */
 
-    'use_route_url' => true,
+    'use_route_url' => false,
     'dashboard_url' => '',
     'logout_url' => 'logout',
     'login_url' => 'login',
@@ -242,9 +242,10 @@ return [
             'text' => 'search',
         ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'Users',
+            'url'  => 'admin/users',
+            'can'  => 'admin-content',
+            'icon' => 'far fa-fw fa-user',
         ],
         [
             'text'        => 'pages',

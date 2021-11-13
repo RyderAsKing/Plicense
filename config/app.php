@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'PLicense'),
 
     /*
     |--------------------------------------------------------------------------
@@ -231,5 +231,4 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
 ];
