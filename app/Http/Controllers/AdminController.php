@@ -43,6 +43,6 @@ class AdminController extends Controller
             $user = User::where(['id' => $request->user_id])->firstOrFail();
         }
         $user->license()->create(['key' => $key, 'ip' => '', 'expires_at' => now()->addDays($request->expires_at), 'status' => 'Active']);
-        return back()->with('message', 'License successfully created, key is ' . $key);
+        return back()->with('message', 'License successfully created for user' . $user->name . ', key is ' . $key);
     }
 }
