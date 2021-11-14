@@ -8,12 +8,15 @@
 
 @section('content')
 <div class="row">
-    @if ($errors->any())
-    @foreach ($errors->all() as $error)
-    <div>{{$error}}</div>
-    @endforeach
-    @endif
+
     <div class="col-12">
+        @if ($errors->any())
+        <div class="alert alert-danger" role="alert">
+            @foreach ($errors->all() as $error)
+            {{$error}}<br>
+            @endforeach
+        </div>
+        @endif
         <div class="card card-primary">
             <!-- /.card-header -->
             <!-- form start -->
