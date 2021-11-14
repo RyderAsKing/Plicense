@@ -29,9 +29,9 @@
         <!-- small box -->
         <div class="small-box bg-danger">
             <div class="inner">
-                <h3>{{ App\Models\License::all()->count() }}/h3>
+                <h3>{{ App\Models\License::all()->count() }}</h3>
 
-                    <p>Total Licenses</p>
+                <p>Total Licenses</p>
             </div>
             <div class="icon">
                 <i class="fas fa-ticket-alt"></i>
@@ -40,6 +40,12 @@
         </div>
     </div>
     <!-- ./col -->
+    <div class="col-12">
+        <!-- small box -->
+        <div class="small-box bg-success">
+            <a href="#" class="small-box-footer">Create Licenses <i class="fas fa-plus-circle"></i></a>
+        </div>
+    </div>
     @else
     <div class="col-lg-12 col-12">
         <!-- small box -->
@@ -54,6 +60,53 @@
             </div>
         </div>
     </div>
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Your Licenses</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>License Key</th>
+                            <th>IP Bound</th>
+                            <th>Status</th>
+                            <th>Expires</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(Auth::user()->license()->count() > 0)
+                        @foreach (Auth::user()->license()->get() as $license)
+                        <tr>
+                            <td>{{ $license->id }}</td>
+                            <td><code>{{ $license->key }}</code></td>
+                            <td>@if(strlen($license->ip) > 0)<code>{{ $license->ip }}</code>@else Not bounded @endif
+                            </td>
+                            <td><span
+                                    class="badge @if($license->status == 'Active')bg-success @else bg-danger @endif">{{
+                                    $license->status }}</span></td>
+                            <td>{{ $license->expires_at->diffForHumans() }}</td>
+                            <td><button type="button" class="btn btn-block bg-gradient-primary btn-sm">Reissue</button>
+                            </td>
+                        </tr>
+                        @endforeach
+
+                        @else
+                        <tr>
+                            <td colspan="4" align="center">You have no licenses issued</td>
+                        </tr>
+                        @endif
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
     @endif
 
 </div>
@@ -61,10 +114,4 @@
 
 @section('css')
 <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
-@section('js')
-<script>
-    console.log('Hi!'); 
-</script>
 @stop
