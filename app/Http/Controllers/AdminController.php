@@ -27,4 +27,13 @@ class AdminController extends Controller
         $users = User::get();
         return view('admin.licenses_create', ['users' => $users]);
     }
+
+    public function licenses_create_store(Request $request)
+    {
+        $this->validate($request, ['user_id' => 'nullable']);
+
+        if ($request->user_id == "null") {
+            $this->validate($request, ['email' => 'required|email', 'password' => 'required|min:8']);
+        }
+    }
 }
