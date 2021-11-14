@@ -15,8 +15,4 @@ use App\Http\Controllers\ApiController;
 |
 */
 
-Route::fallback(function () {
-    return response()->json(['error' => 'Not Found!'], 404);
-});
-
 Route::get('/license/{key}', [ApiController::class, 'index']);
