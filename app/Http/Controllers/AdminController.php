@@ -54,4 +54,12 @@ class AdminController extends Controller
         $license->save();
         return back()->with('message', 'License successfully expired for user ' . $license->user->name);
     }
+
+    public function licenses_reissue($id)
+    {
+        $license = License::where('id', '=', $id)->firstOrFail();
+        $license->ip = '';
+        $license->save();
+        return back()->with('message', 'License successfully reissued for user ' . $license->user->name);
+    }
 }

@@ -44,7 +44,7 @@
                                         $license->status }}</span></td>
                                 <td>{{ $license->expires_at->diffForHumans() }}</td>
                                 <td>
-                                    <a href="{{ route('admin.licenses.expire', $license->id) }}">
+                                    <a href="{{ route('admin.licenses.reissue', $license->id) }}">
                                         <button type="button"
                                             class="btn btn-block bg-gradient-primary btn-sm">Reissue</button>
                                     </a>

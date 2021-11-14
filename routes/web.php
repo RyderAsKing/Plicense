@@ -32,5 +32,6 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/licenses', [AdminController::class, 'licenses'])->name('admin.licenses');
     Route::get('/admin/licenses/create', [AdminController::class, 'licenses_create'])->name('admin.licenses.create');
     Route::post('/admin/licenses/create', [AdminController::class, 'licenses_create_store'])->name('admin.licenses.create');
+    Route::get('/admin/licenses/{id}/reissue', [AdminController::class, 'licenses_reissue'])->name('admin.licenses.reissue');
     Route::get('/admin/licenses/{id}/expire', [AdminController::class, 'licenses_expire'])->name('admin.licenses.expire');
 });
