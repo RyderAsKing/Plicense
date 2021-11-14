@@ -65,6 +65,11 @@
     </div>
 
     <div class="col-12">
+        @if(session('message'))
+        <div class="alert alert-success" role="alert">
+            {{ session('message') }}
+        </div>
+        @endif
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Your Licenses</h3>
@@ -94,7 +99,8 @@
                                     class="badge @if($license->status == 'Active')bg-success @else bg-danger @endif">{{
                                     $license->status }}</span></td>
                             <td>{{ $license->expires_at->diffForHumans() }}</td>
-                            <td><button type="button" class="btn btn-block bg-gradient-primary btn-sm">Reissue</button>
+                            <td><a href="{{ route('licenses.reissue', $license->id) }}"><button type="button"
+                                        class="btn btn-block bg-gradient-primary btn-sm">Reissue</button></a>
                             </td>
                         </tr>
                         @endforeach

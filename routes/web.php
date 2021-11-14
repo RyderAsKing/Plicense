@@ -25,6 +25,7 @@ Auth::routes();
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/licenses', [HomeController::class, 'licenses'])->name('licenses');
+    Route::get('/licenses/{id}/reissue', [HomeController::class, 'licenses_reissue'])->name('licenses.reissue');
 });
 
 Route::group(['middleware' => ['auth', 'admin']], function () {

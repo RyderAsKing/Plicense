@@ -24,4 +24,12 @@ class HomeController extends Controller
         $licenses = License::where('user_id', '=', Auth::user()->id)->get();
         return view('licenses', ['licenses' => $licenses]);
     }
+
+    public function licenses_reissue($id)
+    {
+        $license = Auth::user()->license()->where('id', '=', $id)->firstOrFail();
+        $license->ip = '';
+        $license->save();
+        return back()->with('message', 'License successfully the next time you use the License the IP will get bound.');
+    }
 }

@@ -10,6 +10,11 @@
 <div class="row">
 
     <div class="col-12">
+        @if(session('message'))
+        <div class="alert alert-success" role="alert">
+            {{ session('message') }}
+        </div>
+        @endif
         <div class="card">
             <!-- /.card-header -->
             <div class="card-body">
