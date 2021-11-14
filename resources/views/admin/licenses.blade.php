@@ -10,6 +10,11 @@
 <div class="row">
 
     <div class="col-12">
+        @if(session('message'))
+        <div class="alert alert-success" role="alert">
+            {{ session('message') }}
+        </div>
+        @endif
         <div class="card">
             <!-- /.card-header -->
             <div class="card-body">
@@ -39,13 +44,15 @@
                                         $license->status }}</span></td>
                                 <td>{{ $license->expires_at->diffForHumans() }}</td>
                                 <td>
-                                    <div class="row">
-                                        <div class="col-6"><button type="button"
-                                                class="btn btn-block bg-gradient-primary btn-sm">Reissue</button></div>
-                                        <div class="col-6"><button type="button"
-                                                class="btn btn-block bg-gradient-danger btn-sm">Expire</button></div>
+                                    <a href="{{ route('admin.licenses.expire', $license->id) }}">
+                                        <button type="button"
+                                            class="btn btn-block bg-gradient-primary btn-sm">Reissue</button>
+                                    </a>
+                                    <a href="{{ route('admin.licenses.expire', $license->id) }}" class="p-sm-1">
+                                        <button type="button"
+                                            class="btn btn-block bg-gradient-danger btn-sm">Expire</button>
+                                    </a>
 
-                                    </div>
                                 </td>
                             </tr>
                             @endforeach

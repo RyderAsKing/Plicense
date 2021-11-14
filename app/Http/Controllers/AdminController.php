@@ -45,4 +45,13 @@ class AdminController extends Controller
         $user->license()->create(['key' => $key, 'status' => 'Active', 'ip' => '', 'expires_at' => now()->addDays($request->expires_at)]);
         return back()->with('message', 'License successfully created for user ' . $user->name . ', key is ' . $key);
     }
+
+    public function licenses_expire($id)
+    {
+        $license = License::where('id', '=', $id)->firstOrFail();
+        $license->status = 'Expired';
+        $license->expires_at = now();
+        $license->save();
+        return back()->with('message', 'License successfully expired for user ' . $license->user->name);
+    }
 }
