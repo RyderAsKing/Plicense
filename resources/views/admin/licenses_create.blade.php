@@ -34,17 +34,36 @@
                     </div>
                     <h3 class="text-center">Or create a user</h3>
                     <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="name" class="form-control" id="name" placeholder="Enter full name" name="name"
+                            value={{ old('name') }}>
+                    </div>
+                    <div class="form-group">
                         <label for="email">Email address</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                        <input type="email" class="form-control" id="email" placeholder="Enter email" name="email"
+                            value={{ old('email') }}>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" placeholder="Password"
                             name="password">
                     </div>
+                    <hr>
+
+                    <div class="form-group">
+                        <label for="expires_at">Expires in </label> <span class="badge badge-pill badge-primary"
+                            id="days">@if(old('expires_at')) {{ old('expires_at') }}@else 1 @endif days</span>
+                        <script>
+                            function updateTextInput(val) {
+                                document.getElementById('days').innerHTML = val + " days";
+                            }
+                        </script>
+                        <input type="range" class="custom-range" id="expires_at" min="1" max="100" name="expires_at"
+                            value=@if(old('expires_at')) {{ old('expires_at') }}@else "1" @endif
+                            onchange="updateTextInput(this.value);">
+                    </div>
                 </div>
                 <!-- /.card-body -->
-
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
