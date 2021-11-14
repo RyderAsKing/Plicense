@@ -30,4 +30,5 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/admin/users', [AdminController::class, 'users'])->name('admin.users');
     Route::get('/admin/licenses', [AdminController::class, 'licenses'])->name('admin.licenses');
+    Route::get('/admin/licenses/create', [AdminController::class, 'licenses_create'])->name('admin.licenses.create');
 });

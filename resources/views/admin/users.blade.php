@@ -28,11 +28,15 @@
                             @foreach ($users as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->name }} (@if($user->type == 0) <span class="badge badge-info">User</span>
+                                    @elseif($user->type == 1) <span class="badge badge-success">Admin</span> @endif)
+                                </td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->license->count() }}</td>
-                                <td><button type="button"
+                                <td>@if(Auth::user()->id != $user->id)<button type="button"
                                         class="btn btn-block bg-gradient-danger btn-sm">Delete</button>
+                                    @endif
+                                    <button type="button" class="btn btn-block bg-gradient-warning btn-sm">Edit</button>
                                 </td>
                             </tr>
                             @endforeach

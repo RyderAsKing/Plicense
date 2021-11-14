@@ -21,4 +21,10 @@ class AdminController extends Controller
         $licenses = License::with('user')->get();
         return view('admin.licenses', ['licenses' => $licenses]);
     }
+
+    public function licenses_create()
+    {
+        $users = User::get();
+        return view('admin.licenses_create', ['users' => $users]);
+    }
 }

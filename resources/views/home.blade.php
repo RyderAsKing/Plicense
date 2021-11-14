@@ -45,7 +45,8 @@
     <div class="col-12">
         <!-- small box -->
         <div class="small-box bg-success">
-            <a href="#" class="small-box-footer">Create Licenses <i class="fas fa-plus-circle"></i></a>
+            <a href="{{ route('admin.licenses.create') }}" class="small-box-footer">Create Licenses <i
+                    class="fas fa-plus-circle"></i></a>
         </div>
     </div>
     @else
