@@ -21,7 +21,8 @@
             <div class="icon">
                 <i class="fas fa-users"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('admin.users') }}" class="small-box-footer">More info <i
+                    class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
@@ -36,7 +37,8 @@
             <div class="icon">
                 <i class="fas fa-ticket-alt"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{ route('admin.licenses') }}" class="small-box-footer">More info <i
+                    class="fas fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->

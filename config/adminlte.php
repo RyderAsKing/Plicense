@@ -167,7 +167,7 @@ return [
     |
     */
 
-    'right_sidebar' => false,
+    'right_sidebar' => true,
     'right_sidebar_icon' => 'fas fa-cogs',
     'right_sidebar_theme' => 'dark',
     'right_sidebar_slide' => true,
@@ -245,9 +245,15 @@ return [
         [
             'text' => 'Licenses',
             'url'  => 'admin/licenses',
+            'can' => 'admin-content',
             'icon' => 'fas fa-ticket-alt',
         ],
-
+        [
+            'text' => 'Licenses',
+            'url'  => 'licenses',
+            'can' => 'user-content',
+            'icon' => 'fas fa-ticket-alt',
+        ],
     ],
 
     /*
