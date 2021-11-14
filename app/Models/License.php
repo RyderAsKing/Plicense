@@ -19,6 +19,7 @@ class License extends Model
         'key',
         'ip',
         'expires_at',
+        'status',
     ];
 
     /**
