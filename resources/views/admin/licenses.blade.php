@@ -42,7 +42,8 @@
                                 <td><span
                                         class="badge @if($license->status == 'Active')bg-success @else bg-danger @endif">{{
                                         $license->status }}</span></td>
-                                <td>{{ $license->expires_at->diffForHumans() }}</td>
+                                <td>@if($license->expireable == true){{ $license->expires_at->diffForHumans() }} @else
+                                    Never @endif</td>
                                 <td>
                                     <a href="{{ route('admin.licenses.reissue', $license->id) }}">
                                         <button type="button"

@@ -42,7 +42,14 @@ class AdminController extends Controller
         } else {
             $user = User::where(['id' => $request->user_id])->firstOrFail();
         }
-        $user->license()->create(['key' => $key, 'status' => 'Active', 'ip' => '', 'expires_at' => now()->addDays($request->expires_at)]);
+        if ($request->expires_at == 0) {
+            $expireable = false;
+            $expires_at = now();
+        } else {
+            $expireable = true;
+            $expires_at = now()->addDays($request->expires_at);
+        }
+        $user->license()->create(['key' => $key, 'status' => 'Active', 'ip' => '', 'expires_at' => $expires_at, 'expireable' => $expireable]);
         return back()->with('message', 'License successfully created for user ' . $user->name . ', key is ' . $key);
     }
 

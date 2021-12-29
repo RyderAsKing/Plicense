@@ -58,14 +58,18 @@
 
                     <div class="form-group">
                         <label for="expires_at">Expires in </label> <span class="badge badge-pill badge-primary"
-                            id="days">@if(old('expires_at')) {{ old('expires_at') }}@else 1 @endif days</span>
+                            id="days">@if(old('expires_at')) {{ old('expires_at') }}@else Never @endif</span>
                         <script>
                             function updateTextInput(val) {
-                                document.getElementById('days').innerHTML = val + " days";
+                                if(val == 0){
+                                    document.getElementById('days').innerHTML = 'Never';
+                                }else{
+                                    document.getElementById('days').innerHTML = val + ' days';
+                                }
                             }
                         </script>
-                        <input type="range" class="custom-range" id="expires_at" min="1" max="100" name="expires_at"
-                            value=@if(old('expires_at')) {{ old('expires_at') }}@else "1" @endif
+                        <input type="range" class="custom-range" id="expires_at" min="0" max="100" name="expires_at"
+                            value=@if(old('expires_at')) {{ old('expires_at') }}@else "0" @endif
                             onchange="updateTextInput(this.value);">
                     </div>
                 </div>

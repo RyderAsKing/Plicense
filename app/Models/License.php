@@ -20,6 +20,7 @@ class License extends Model
         'ip',
         'expires_at',
         'status',
+        'expireable',
     ];
 
     /**
