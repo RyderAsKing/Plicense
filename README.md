@@ -181,6 +181,13 @@ php artisan command:admin
 # > yes
 ```
 
+### Configuration of cron jobs
+
+```bash
+# You have to add a single entry to your server’s crontab file
+* * * * * cd /var/www/plicense && php artisan schedule:run >> /dev/null 2>&1
+```
+
 ### SSL (Optional but recommended)
 
 ```bash
