@@ -17,13 +17,20 @@ class ApiController extends Controller
         if ($license->status != 'Active') {
             $response = ['valid' => false, 'message' => 'License expired', 'expired_on' => $license->expires_at];
         } else {
+            $expiry = "";
+            if ($license->expireable == false) {
+                $expiry = "Never";
+            } else {
+                $expiry = $license->expires_at->diffForHumans();
+            }
             if ($license->ip == '') {
                 $license->ip = $request->ip();
                 $license->save();
-                $response = ['valid' => true, 'message' => 'License IP bounded to ' . $request->ip(), 'expires_on' => $license->expires_at];
+                $license->expires_at->format('M d Y');
+                $response = ['valid' => true, 'message' => 'License IP bounded to ' . $request->ip(), 'expires_on' => $expiry];
             } else {
                 if ($license->ip == $request->ip()) {
-                    $response = ['valid' => true, 'expires_on' => $license->expires_at];
+                    $response = ['valid' => true, 'expires_on' => $expiry];
                 } else {
                     $response = ['valid' => false, 'message' => 'License is valid however the IP is not same as the one its locked to'];
                 }
