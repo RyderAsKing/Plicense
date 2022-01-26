@@ -21,12 +21,11 @@ class ApiController extends Controller
             if ($license->expireable == false) {
                 $expiry = "Never";
             } else {
-                $expiry = $license->expires_at->diffForHumans();
+                $expiry = $license->expires_at->format('M d Y');
             }
             if ($license->ip == '') {
                 $license->ip = $request->ip();
                 $license->save();
-                $license->expires_at->format('M d Y');
                 $response = ['valid' => true, 'message' => 'License IP bounded to ' . $request->ip(), 'expires_on' => $expiry];
             } else {
                 if ($license->ip == $request->ip()) {
