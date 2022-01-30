@@ -48,6 +48,10 @@
             <a href="{{ route('admin.licenses.create') }}" class="small-box-footer">Create Licenses <i
                     class="fas fa-plus-circle"></i></a>
         </div>
+        <div class="small-box bg-success">
+            <a href="{{ route('api.update') }}" class="small-box-footer">Update API Token <i
+                    class="fas fa-plus-circle"></i></a>
+        </div>
     </div>
     @else
     <div class="col-lg-12 col-12">
