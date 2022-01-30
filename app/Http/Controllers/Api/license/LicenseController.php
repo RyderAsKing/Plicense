@@ -9,7 +9,7 @@ class ApiController extends Controller
 {
     //
 
-    public function index(Request $request, $key)
+    public function verify(Request $request, $key)
     {
         $license = License::where(['key' => $key])->firstOrFail();
         $response = [];

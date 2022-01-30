@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\LicenseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +16,7 @@ use App\Http\Controllers\ApiController;
 |
 */
 
-Route::get('/license/{key}', [ApiController::class, 'index']);
+Route::get('/license/{key}', [LicenseController::class, 'verify']);
+
+Route::middleware(['auth:api'])->group(function () {
+});
