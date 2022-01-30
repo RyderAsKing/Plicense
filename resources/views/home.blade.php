@@ -52,7 +52,13 @@
             <a href="{{ route('api.update') }}" class="small-box-footer">Update API Token <i
                     class="fas fa-plus-circle"></i></a>
         </div>
+        @if(session('token'))
+        <div class="alert alert-info text-center" role="alert">
+            Your updated API token is <code>{{ session('token') }}</code>
+        </div>
+        @endif
     </div>
+
     @else
     <div class="col-lg-12 col-12">
         <!-- small box -->
