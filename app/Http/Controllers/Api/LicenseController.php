@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\User;
 use App\Models\License;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class LicenseController extends Controller
 {
@@ -37,5 +40,28 @@ class LicenseController extends Controller
             }
         }
         return response()->json($response);
+    }
+
+    public function create(Request $request)
+    {
+        $validator = Validator::make($request->all(), ['email' => 'required|email', 'days' => 'required|integer|min:0|max:100']);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 401);
+        } else {
+            $user = User::firstOrFail(['email' => $request->email]);
+            if ($user) {
+                if ($request->days == 0) {
+                    $expireable = false;
+                    $expires_at = now();
+                } else {
+                    $expireable = true;
+                    $expires_at = now()->addDays($request->days);
+                }
+                $key = 'License-' . Str::random(16);
+                $license = $user->license()->create(['key' => $key, 'status' => 'Active', 'ip' => '', 'expires_at' => $expires_at, 'expireable' => $expireable]);
+                return response()->json(['success' => 'License created successfully', 'key' => $key]);
+            }
+        }
     }
 }
