@@ -20,4 +20,5 @@ Route::get('/license/{key}', [LicenseController::class, 'verify']);
 
 Route::middleware(['auth:api', 'admin'])->group(function () {
     Route::post('/user/create', [UserController::class, 'create']);
+    Route::delete('/user/{email}/delete', [UserController::class, 'delete']);
 });
