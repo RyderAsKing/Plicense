@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LicenseController;
+use App\Http\Controllers\Api\LicenseController;
+use App\Http\Controllers\Api\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,5 @@ use App\Http\Controllers\LicenseController;
 Route::get('/license/{key}', [LicenseController::class, 'verify']);
 
 Route::middleware(['auth:api'])->group(function () {
+    Route::post('/user/create', [UserController::class, 'create']);
 });
