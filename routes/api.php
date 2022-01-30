@@ -18,6 +18,6 @@ use App\Http\Controllers\Api\UserController;
 
 Route::get('/license/{key}', [LicenseController::class, 'verify']);
 
-Route::middleware(['auth:api'])->group(function () {
+Route::middleware(['auth:api', 'admin'])->group(function () {
     Route::post('/user/create', [UserController::class, 'create']);
 });
