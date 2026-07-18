@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\License;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class SecurityHardeningTest extends TestCase
@@ -17,7 +16,7 @@ class SecurityHardeningTest extends TestCase
         $attrs = array_merge([
             'name' => 'Test User',
             'email' => 'user'.uniqid('', true).'@example.com',
-            'password' => Hash::make('password'),
+            'password' => 'password',
         ], $overrides);
 
         $type = $attrs['type'] ?? 0;
@@ -126,7 +125,7 @@ class SecurityHardeningTest extends TestCase
         $user = new User([
             'name' => 'Mass Assign',
             'email' => 'mass@example.com',
-            'password' => Hash::make('password'),
+            'password' => 'password',
             'type' => 1,
         ]);
         $user->type = 0;

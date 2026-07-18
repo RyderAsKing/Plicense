@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Models\User;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Hash;
 
 class CreateAdminAccount extends Command
 {
@@ -47,7 +46,12 @@ class CreateAdminAccount extends Command
             $password = $details['password'];
         } while (!$this->confirm("Create user {$name} <{$email}>?", true));
 
-        $user = User::forceCreate(['name' => $name, 'email' => $email, 'password' => Hash::make($password), 'type' => 1]);
+        $user = User::forceCreate([
+            'name' => $name,
+            'email' => $email,
+            'password' => $password,
+            'type' => 1,
+        ]);
         $this->info("Created new user #{$user->id}");
         return Command::SUCCESS;
     }
