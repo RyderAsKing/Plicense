@@ -44,10 +44,13 @@
                                     Never @endif</td>
                                 <td>
                                     <div class="row">
-                                        <div class="col-12"><a
-                                                href="{{ route('licenses.reissue', $license->id) }}"><button
-                                                    type="button"
-                                                    class="btn btn-block bg-gradient-primary btn-sm">Reissue</button></a>
+                                        <div class="col-12">
+                                            <form method="POST"
+                                                action="{{ route('licenses.reissue', $license->id) }}">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="btn btn-block bg-gradient-primary btn-sm">Reissue</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </td>

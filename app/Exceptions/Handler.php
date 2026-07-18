@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
                     'status' => 404,
                     'error' => true,
                     'error_message' => 'The requested resource is not available'
-                ], 200);
+                ], 404);
             }
         });
     }

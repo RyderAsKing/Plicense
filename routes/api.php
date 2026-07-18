@@ -16,9 +16,14 @@ use App\Http\Controllers\Api\UserController;
 |
 */
 
-Route::get('/license/{key}', [LicenseController::class, 'verify']);
+Route::post('/license/verify', [LicenseController::class, 'verify'])
+    ->middleware('throttle:license-verify');
 
-Route::middleware(['auth:api', 'admin'])->group(function () {
+// Keep GET for backward compatibility, but prefer POST with key in body.
+Route::get('/license/{key}', [LicenseController::class, 'verify'])
+    ->middleware('throttle:license-verify');
+
+Route::middleware(['auth:api', 'admin', 'throttle:admin-api'])->group(function () {
     Route::post('/user/create', [UserController::class, 'create']);
     Route::delete('/user/{email}/delete', [UserController::class, 'delete']);
 });
