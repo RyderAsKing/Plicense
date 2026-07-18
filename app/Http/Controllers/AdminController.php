@@ -6,12 +6,8 @@ use App\Models\User;
 use App\Models\License;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-
 class AdminController extends Controller
 {
-    //
-
     public function users()
     {
         $users = User::with('license')->get();
@@ -41,7 +37,7 @@ class AdminController extends Controller
             $user = new User([
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => Hash::make($request->password),
+                'password' => $request->password,
             ]);
             $user->type = 0;
             $user->save();

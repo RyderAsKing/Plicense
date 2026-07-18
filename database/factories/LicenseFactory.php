@@ -2,26 +2,28 @@
 
 namespace Database\Factories;
 
-use Illuminate\Support\Str;
+use App\Models\License;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
-
+/**
+ * @extends Factory<License>
+ */
 class LicenseFactory extends Factory
 {
-
     /**
      * Define the model's default state.
      *
-     * @return array
+     * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            //
-            'key' => 'License-' . Str::random(16),
-            'ip' => '192.168.0.1',
-            'expires_at' => now()->addDays(rand(1, 5)),
+            'key' => 'License-'.Str::random(16),
+            'ip' => '',
+            'expires_at' => now()->addDays(fake()->numberBetween(1, 30)),
             'status' => 'Active',
+            'expireable' => true,
         ];
     }
 }
