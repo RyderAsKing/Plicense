@@ -49,8 +49,13 @@
                     class="fas fa-plus-circle"></i></a>
         </div>
         <div class="small-box bg-success">
-            <a href="{{ route('api.update') }}" class="small-box-footer">Update API Token <i
-                    class="fas fa-plus-circle"></i></a>
+            <form method="POST" action="{{ route('api.update') }}">
+                @csrf
+                <button type="submit" class="small-box-footer btn btn-link text-white p-0 border-0 w-100"
+                    style="background: transparent;">
+                    Update API Token <i class="fas fa-plus-circle"></i>
+                </button>
+            </form>
         </div>
         @if(session('token'))
         <div class="alert alert-info text-center" role="alert">
@@ -109,8 +114,12 @@
                                     class="badge @if($license->status == 'Active')bg-success @else bg-danger @endif">{{
                                     $license->status }}</span></td>
                             <td>{{ $license->expires_at->diffForHumans() }}</td>
-                            <td><a href="{{ route('licenses.reissue', $license->id) }}"><button type="button"
-                                        class="btn btn-block bg-gradient-primary btn-sm">Reissue</button></a>
+                            <td>
+                                <form method="POST" action="{{ route('licenses.reissue', $license->id) }}">
+                                    @csrf
+                                    <button type="submit"
+                                        class="btn btn-block bg-gradient-primary btn-sm">Reissue</button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach

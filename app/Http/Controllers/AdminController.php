@@ -38,7 +38,13 @@ class AdminController extends Controller
         if ($request->user_id == "null") {
             $this->validate($request, ['name' => 'required|min:4', 'email' => 'required|email|unique:users,email', 'password' => 'required|min:8']);
 
-            $user = User::create(['name' => $request->name, 'email' => $request->email, 'password' => Hash::make($request->password), 'type' => 0]);
+            $user = new User([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+            $user->type = 0;
+            $user->save();
         } else {
             $user = User::where(['id' => $request->user_id])->firstOrFail();
         }

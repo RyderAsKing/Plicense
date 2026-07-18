@@ -45,15 +45,17 @@
                                 <td>@if($license->expireable == true){{ $license->expires_at->diffForHumans() }} @else
                                     Never @endif</td>
                                 <td>
-                                    <a href="{{ route('admin.licenses.reissue', $license->id) }}">
-                                        <button type="button"
+                                    <form method="POST" action="{{ route('admin.licenses.reissue', $license->id) }}"
+                                        class="mb-1">
+                                        @csrf
+                                        <button type="submit"
                                             class="btn btn-block bg-gradient-primary btn-sm">Reissue</button>
-                                    </a>
-                                    <a href="{{ route('admin.licenses.expire', $license->id) }}" class="p-sm-1">
-                                        <button type="button"
+                                    </form>
+                                    <form method="POST" action="{{ route('admin.licenses.expire', $license->id) }}">
+                                        @csrf
+                                        <button type="submit"
                                             class="btn btn-block bg-gradient-danger btn-sm">Expire</button>
-                                    </a>
-
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

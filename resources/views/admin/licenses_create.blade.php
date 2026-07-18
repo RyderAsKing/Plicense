@@ -26,13 +26,13 @@
         <div class="card card-primary">
             <!-- /.card-header -->
             <!-- form start -->
-            <form method="post" action={{ route('admin.licenses.create') }}>
+            <form method="post" action="{{ route('admin.licenses.create.store') }}">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Select a user</label>
                         <select id="user_id" class="form-control js-example-basic-single" name="user_id">
-                            <option value=null>None</option>
+                            <option value="null">None</option>
                             @foreach ($users as $user)
                             <option value="{{ $user->id }}">{{ $user->name }} | {{ $user->email }}</option>
                             @endforeach
@@ -41,13 +41,13 @@
                     <h3 class="text-center">Or create a user</h3>
                     <div class="form-group">
                         <label for="name">Full Name</label>
-                        <input type="name" class="form-control" id="name" placeholder="Enter full name" name="name"
-                            value={{ old('name') }}>
+                        <input type="text" class="form-control" id="name" placeholder="Enter full name" name="name"
+                            value="{{ old('name') }}">
                     </div>
                     <div class="form-group">
                         <label for="email">Email address</label>
                         <input type="email" class="form-control" id="email" placeholder="Enter email" name="email"
-                            value={{ old('email') }}>
+                            value="{{ old('email') }}">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
@@ -69,7 +69,7 @@
                             }
                         </script>
                         <input type="range" class="custom-range" id="expires_at" min="0" max="100" name="expires_at"
-                            value=@if(old('expires_at')) {{ old('expires_at') }}@else "0" @endif
+                            value="{{ old('expires_at', 0) }}"
                             onchange="updateTextInput(this.value);">
                     </div>
                 </div>

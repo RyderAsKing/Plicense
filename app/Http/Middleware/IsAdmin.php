@@ -18,6 +18,10 @@ class IsAdmin
     public function handle($request, Closure $next)
     {
         if (!Auth::check()) {
+            if ($request->expectsJson() || $request->is('api/*')) {
+                return response()->json(['error' => 'Unauthenticated'], 401);
+            }
+
             return redirect()->route('login');
         }
 
@@ -25,7 +29,10 @@ class IsAdmin
             return $next($request);
         }
 
-        return redirect()->back()->with('message', 'You are 
-                  unauthorised to access this page');
+        if ($request->expectsJson() || $request->is('api/*')) {
+            return response()->json(['error' => 'Forbidden'], 403);
+        }
+
+        return redirect()->back()->with('message', 'You are unauthorised to access this page');
     }
 }
