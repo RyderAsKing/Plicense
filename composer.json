@@ -2,14 +2,17 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.12.1",
         "jeroennoten/laravel-adminlte": "^3.7",
-        "laravel/framework": "^8.65",
+        "laravel/framework": "^8.83.29",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3"
@@ -18,10 +21,10 @@
         "barryvdh/laravel-debugbar": "^3.6",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
-        "laravel/sail": "^1.0.1",
+        "laravel/sail": "~1.19.0",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^5.10",
-        "phpunit/phpunit": "^9.5.10"
+        "phpunit/phpunit": "^9.6.33"
     },
     "autoload": {
         "psr-4": {
@@ -58,7 +61,16 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "policy": {
+            "advisories": {
+                "ignore-id": {
+                    "PKSA-m5cs-t1y6-qpcs": "Fix only in Laravel 12+; staying on Laravel 8/PHP 8.0",
+                    "PKSA-3r5d-mb8f-1qw9": "Fix only in Laravel 12+; staying on Laravel 8/PHP 8.0",
+                    "PKSA-8qx3-n5y5-vvnd": "CVE-2025-27515 fixed in Laravel 10.48.29+; no Laravel 8 patch"
+                }
+            }
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
