@@ -24,7 +24,7 @@ class UserController extends Controller
         }
 
         // API-created users are always clients; admin creation is UI-only.
-        $user = User::create([
+        $user = new User([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
